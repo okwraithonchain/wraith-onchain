@@ -1,7 +1,3 @@
-**Beta Version** — Use at your own risk.
-
-**Star this repo if you're ready to enter the vault**
-
 <div align="center">
 
 # Wraith Onchain 
