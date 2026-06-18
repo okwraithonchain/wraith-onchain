@@ -59,10 +59,6 @@ Use at your own risk.
 
 ---
 
-### Tech Stack
-
-![Tech Stack Banner](https://raw.githubusercontent.com/YOUR-USERNAME/wraith-onchain/main/banner.png)
-
 Built with modern autonomous agent technology, onchain execution, and real-time market intelligence.
 
 ---
