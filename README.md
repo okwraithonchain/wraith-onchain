@@ -45,7 +45,7 @@ Wraith Onchain is an intelligent autonomous vault that continuously scans predic
 
 ### Links
 
-- **Website**: [https://wraithonchain.xyz](https://wraithonchain.fun)
+- **Website**: [https://wraithonchain.fun](https://wraithonchain.fun)
 - **Twitter**: [@okwraithonchain](https://x.com/okwraithonchain)
 - **Founder**: [@GraceWischoff](https://x.com/GraceWischoff)
 - **Built by**: [@Conn3ctprotocol](https://x.com/Conn3ctprotocol)
