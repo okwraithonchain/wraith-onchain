@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <style>
+      @media (prefers-color-scheme: dark) {
+        .bg { fill: #0a0a0a; }
+        .eye { fill: none; stroke: #f5f5f5; stroke-width: 28; }
+        .iris { fill: #f5f5f5; }
+      }
+      @media (prefers-color-scheme: light) {
+        .bg { fill: #ffffff; }
+        .eye { fill: none; stroke: #0a0a0a; stroke-width: 28; }
+        .iris { fill: #0a0a0a; }
+      }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect class="bg" width="512" height="512"/>
+  
+  <!-- Eye outline -->
+  <path class="eye" d="M100 256 Q256 150 412 256 Q256 362 100 256 Z" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Iris circle -->
+  <circle class="iris" cx="256" cy="256" r="60"/>
+  
+  <!-- Iris notch (top-left) -->
+  <path class="bg" d="M 220 220 A 40 40 0 0 1 240 210" fill="none" stroke-width="8" stroke-linecap="round"/>
+</svg>
