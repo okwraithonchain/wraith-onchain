@@ -1,6 +1,6 @@
 <div align="center">
 
-# WRAITH ONCHAIN ⚡
+# WRAITH ONCHAIN 
 
 **Autonomous Prediction Market Arbitrage Vault**
 
@@ -27,7 +27,7 @@
 
 **Beta Version** — Use at your own risk.
 
-**Star this repo if you're ready to enter the vault ⚡**
+**Star this repo if you're ready to enter the vault**
 
 <div align="center">
 
