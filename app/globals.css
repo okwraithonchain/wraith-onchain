@@ -102,12 +102,31 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
     @apply font-mono;
+    font-size: 14px; /* Reduced from default 16px */
   }
+  body {
+    @apply bg-background text-foreground;
+    font-size: 14px;
+  }
+}
+
+/* Neon glow effects */
+.neon-glow {
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0);
+}
+
+.neon-glow:hover {
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.5), 0 0 30px rgba(0, 217, 255, 0.3);
+  text-shadow: 0 0 10px rgba(0, 217, 255, 0.8);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
 }
 
 /* Monaspace font configuration */
