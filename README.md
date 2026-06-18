@@ -1,6 +1,6 @@
-![Wraith Onchain Banner](https://raw.githubusercontent.com/wraith-onchain/main/banner.png)
+<div align="center">
 
-# Wraith Onchain ⚡
+# Wraith Onchain 
 
 **Autonomous Prediction Market Arbitrage Vault**
 
@@ -8,7 +8,7 @@
 
 ---
 
-### ✨ What is Wraith Onchain?
+### What is Wraith Onchain?
 
 Wraith Onchain is an intelligent autonomous vault that continuously scans prediction markets (Polymarket, Kalshi, etc.), detects mispricings, and executes risk-free arbitrage opportunities 24/7 — fully onchain and without human intervention.
 
@@ -20,6 +20,18 @@ Wraith Onchain is an intelligent autonomous vault that continuously scans predic
 - **Target APR** — 10–25% (market dependent)
 - **Transparent & Onchain** — Everything verifiable
 - **Set & Forget** — True passive income
+
+- $ Wraith Onchain--status
+┌─────────────────────────────────────────┐
+│  ONCHAIN — ACTIVE                       │
+├─────────────────────────────────────────┤
+│  ✓  anomaly detection      running      │
+│  ✓  secret scanner         running      │
+│  ✓  dependency audit       running      │
+│  ✓  ai code review         running      │
+│  ✓  onchain executor       running      │
+│  ✓  governance facilitator running      │
+└─────────────────────────────────────────┘
 
 ### How It Works
 
@@ -55,24 +67,9 @@ Built with modern autonomous agent technology, onchain execution, and real-time 
 
 ---
 
-**Star this repo if you're ready to enter the vault ⚡**
-
-
-
-
-
-
-
-
-# wraith-onchain-website
+**Star this repo if you're ready to entwraith-onchain-websit# wraith-onchain-website
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
-
-## Built with v0
-
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
-
-[Continue working on v0 →](https://v0.app/chat/projects/prj_D6Bt0Zqc7TPoiXko4FxjTYsARWlj)
 
 ## Getting Started
 
