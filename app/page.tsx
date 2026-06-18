@@ -347,7 +347,11 @@ export default function Home() {
       <footer className="px-6 md:px-8 py-8 md:py-12 border-t border-border">
         <div className="max-w-7xl mx-auto text-center text-xs md:text-sm text-muted-foreground">
           <p className="mb-2">© 2024 Wraith Onchain. All rights reserved.</p>
-          <p>Powered by <a href="https://x.com/Conn3ctprotocol" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent/80 neon-glow transition-colors">@Conn3ctprotocol</a></p>
+          <p className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4">
+            <span>Founder <a href="https://x.com/GraceWischoff" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent/80 neon-glow transition-colors">@GraceWischoff</a></span>
+            <span className="hidden md:inline">•</span>
+            <span>Powered by <a href="https://x.com/Conn3ctprotocol" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent/80 neon-glow transition-colors">@Conn3ctprotocol</a></span>
+          </p>
         </div>
       </footer>
       {/* Docs Modal */}
