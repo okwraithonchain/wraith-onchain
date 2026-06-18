@@ -157,3 +157,209 @@
   font-weight: 700;
   font-style: normal;
 }
+
+/* ===== CYBERPUNK GLITCH BACKGROUND EFFECTS ===== */
+
+/* Keyframe animations for glitch effects */
+@keyframes scanlines {
+  0% {
+    opacity: 0.03;
+  }
+  50% {
+    opacity: 0.08;
+  }
+  100% {
+    opacity: 0.03;
+  }
+}
+
+@keyframes glitchDistortion {
+  0% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+  }
+  10% {
+    clip-path: inset(10% 0 20% 0);
+    opacity: 0.08;
+    transform: translateX(2px);
+  }
+  20% {
+    clip-path: inset(5% 0 15% 0);
+    opacity: 0;
+  }
+  30% {
+    clip-path: inset(15% 0 25% 0);
+    opacity: 0.1;
+    transform: translateX(-2px);
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+    transform: translateX(0);
+  }
+}
+
+@keyframes digitalRain {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.08;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0.03;
+  }
+}
+
+@keyframes staticNoise {
+  0% {
+    background-position: 0 0;
+    opacity: 0.08;
+  }
+  10% {
+    background-position: 40px 60px;
+    opacity: 0.12;
+  }
+  20% {
+    background-position: 130px 270px;
+    opacity: 0.06;
+  }
+  30% {
+    background-position: 70px 100px;
+    opacity: 0.1;
+  }
+  40% {
+    opacity: 0.05;
+  }
+  100% {
+    background-position: 0 0;
+    opacity: 0.05;
+  }
+}
+
+@keyframes glitchFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 0;
+  }
+  20%, 24%, 55% {
+    opacity: 0.08;
+  }
+}
+
+/* Background glitch container - applied to body */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.03) 2px,
+      rgba(255, 255, 255, 0.03) 4px
+    );
+  pointer-events: none;
+  z-index: 1;
+  animation: scanlines 8s linear infinite;
+}
+
+/* Static noise effect */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.02) 2px,
+      rgba(255, 255, 255, 0.02) 4px
+    );
+  background-size: 500px 500px;
+  pointer-events: none;
+  z-index: 1;
+  animation: staticNoise 6s steps(10) infinite;
+}
+
+/* Glitch distortion layer */
+main {
+  position: relative;
+}
+
+main::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 75%
+  );
+  pointer-events: none;
+  z-index: 1;
+  animation: glitchDistortion 12s ease-in-out infinite;
+}
+
+/* Digital rain effect - vertical lines */
+main::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 80px,
+      rgba(255, 255, 255, 0.02) 80px,
+      rgba(255, 255, 255, 0.02) 82px
+    );
+  pointer-events: none;
+  z-index: 1;
+  animation: digitalRain 20s linear infinite;
+}
+
+/* Ensure content stays readable and on top of glitch layers */
+main > * {
+  position: relative;
+  z-index: 2;
+}
+
+nav {
+  position: relative;
+  z-index: 10;
+}
+
+footer {
+  position: relative;
+  z-index: 10;
+}
+
+/* Additional text glow for cyberpunk aesthetic */
+h1, h2, h3 {
+  text-shadow: 0 0 20px rgba(0, 255, 159, 0.1);
+}
+
+/* Enhance neon glow on accent text */
+.text-accent {
+  text-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
+}
