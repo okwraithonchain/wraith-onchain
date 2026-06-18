@@ -1,4 +1,37 @@
 <div align="center">
+  <img src="https://raw.githubusercontent.com/okwraithonchain/wraith-onchain/main/banner.png" width="100%" alt="Wraith Onchain Banner">
+</div>
+
+# WRAITH ONCHAIN ⚡
+
+**Autonomous Prediction Market Arbitrage Vault**
+
+> Configure once. Earn passively.
+
+---
+
+**Wraith Onchain** adalah vault otonom yang terus memindai Polymarket, Kalshi, dan prediction market lainnya, mencari mispricing, lalu mengeksekusi arbitrage secara otomatis 24/7.
+
+### Key Features
+- Fully autonomous (no babysitting)
+- Statistical arbitrage (low risk)
+- Single USDC deposit
+- Target APR 10–25%
+- 100% onchain & transparent
+- Set & forget
+
+### Links
+- [Website](https://wraithonchain.xyz)  
+- [Twitter @okwraithonchain](https://x.com/okwraithonchain)  
+- Founder: [@GraceWischoff](https://x.com/GraceWischoff)
+
+---
+
+**Beta Version** — Use at your own risk.
+
+**Star this repo if you're ready to enter the vault ⚡**
+
+<div align="center">
 
 # Wraith Onchain 
 
