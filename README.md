@@ -8,8 +8,6 @@
 
 ---
 
-**Wraith Onchain** adalah vault otonom yang terus memindai Polymarket, Kalshi, dan prediction market lainnya, mencari mispricing, lalu mengeksekusi arbitrage secara otomatis 24/7.
-
 ### Key Features
 - Fully autonomous (no babysitting)
 - Statistical arbitrage (low risk)
@@ -17,7 +15,6 @@
 - Target APR 10–25%
 - 100% onchain & transparent
 - Set & forget
-
 ### Links
 - [Website](https://wraithonchain.xyz)  
 - [Twitter @okwraithonchain](https://x.com/okwraithonchain)  
