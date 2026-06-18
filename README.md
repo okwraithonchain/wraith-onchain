@@ -1,25 +1,3 @@
-# WRAITH ONCHAIN 
-
-**Autonomous Prediction Market Arbitrage Vault**
-
-> Configure once. Earn passively.
-
----
-
-### Key Features
-- Fully autonomous (no babysitting)
-- Statistical arbitrage (low risk)
-- Single USDC deposit
-- Target APR 10–25%
-- 100% onchain & transparent
-- Set & forget
-### Links
-- [Website](https://wraithonchain.xyz)  
-- [Twitter @okwraithonchain](https://x.com/okwraithonchain)  
-- Founder: [@GraceWischoff](https://x.com/GraceWischoff)
-
----
-
 **Beta Version** — Use at your own risk.
 
 **Star this repo if you're ready to enter the vault**
