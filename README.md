@@ -1,5 +1,3 @@
-<div align="center">
-
 # WRAITH ONCHAIN 
 
 **Autonomous Prediction Market Arbitrage Vault**
