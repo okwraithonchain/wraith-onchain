@@ -2,6 +2,9 @@
 
 # Wraith Onchain 
 
+Contract address: 0xf1f0d54d54d21c80a5c1d3a6beff37403d4c9ba3
+live: https://bankr.bot/launches/0xf1f0d54d54d21c80a5c1d3a6beff37403d4c9ba3
+
 **Autonomous Prediction Market Arbitrage Vault**
 
 > Configure once. Earn passively.
