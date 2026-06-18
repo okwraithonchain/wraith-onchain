@@ -10,6 +10,13 @@ export default function Home() {
   const [showDocsModal, setShowDocsModal] = useState(false)
   const [showVaultModal, setShowVaultModal] = useState(false)
   const [showAppModal, setShowAppModal] = useState(false)
+  const [walletConnected, setWalletConnected] = useState(false)
+  const [showDepositForm, setShowDepositForm] = useState(false)
+  const [showWithdrawForm, setShowWithdrawForm] = useState(false)
+  const [depositAmount, setDepositAmount] = useState('')
+  const [withdrawAmount, setWithdrawAmount] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
+  const [successType, setSuccessType] = useState<'deposit' | 'withdraw' | ''>('')
 
   return (
     <main className="min-h-screen bg-background text-foreground" style={{ fontFamily: '"Monaspace Neon", "Monaspace Argon", monospace' }}>
@@ -447,66 +454,143 @@ export default function Home() {
       {/* Vault Details Modal */}
       {showVaultModal && (
         <div className="fixed inset-0 modal-overlay flex items-center justify-center z-50 p-4">
-          <div className="bg-background border border-border rounded-lg max-w-2xl w-full">
-            <div className="flex items-center justify-between p-4 md:p-6 border-b border-border">
-              <h2 className="text-lg md:text-xl font-bold tracking-tight">Wraith Onchain Vault</h2>
+          <div className="bg-background border border-border rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between p-4 md:p-6 border-b border-border sticky top-0 bg-background/95">
+              <h2 className="text-lg md:text-xl font-bold tracking-tight">ENTER THE VAULT</h2>
               <button 
-                onClick={() => setShowVaultModal(false)}
+                onClick={() => {
+                  setShowVaultModal(false)
+                  setWalletConnected(false)
+                }}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <X size={24} />
               </button>
             </div>
-            <div className="p-4 md:p-6 space-y-6">
+            
+            <div className="p-4 md:p-8 space-y-8">
+              {/* Logo */}
+              <div className="flex justify-center">
+                <Image 
+                  src="/logo.png" 
+                  alt="Wraith Eye Logo" 
+                  width={64} 
+                  height={64}
+                  className="w-16 h-16 opacity-80"
+                />
+              </div>
+
+              {/* Main Description */}
               <section>
-                <h3 className="text-sm md:text-base font-bold mb-3 tracking-tight text-accent">What is the Vault?</h3>
-                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
-                  The Wraith Onchain Vault is an automated smart contract system that discovers and executes arbitrage opportunities in prediction markets. Instead of manually tracking prices across venues, the vault continuously scans for profitable pairs where YES + NO prices sum to less than $1.
+                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed text-center mb-6">
+                  Wraith Onchain is an autonomous arbitrage vault that continuously scans prediction markets (Polymarket, Kalshi, etc.) for mispricings. When YES + NO tokens across equivalent outcomes cost less than $1 after fees, the vault executes instantly and locks in risk-free profit at settlement.
                 </p>
               </section>
 
+              {/* Key Benefits */}
               <section>
-                <h3 className="text-sm md:text-base font-bold mb-3 tracking-tight text-accent">How Arbitrage Works</h3>
-                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed mb-3">
-                  When two prediction markets price the same outcome differently, a spread exists. If you can buy both YES and NO for less than $1 combined, you lock in a guaranteed profit at settlement regardless of the actual outcome.
-                </p>
-                <div className="bg-card border border-border p-3 rounded text-xs md:text-sm text-muted-foreground font-mono">
-                  <p>Example:</p>
-                  <p>Market A: YES = $0.55</p>
-                  <p>Market B: NO = $0.40</p>
-                  <p>Cost: $0.55 + $0.40 = $0.95</p>
-                  <p className="text-accent mt-2">Profit at settlement: $1.00 - $0.95 - fees = ~4% return</p>
+                <h3 className="text-sm md:text-base font-bold mb-4 tracking-tight text-accent text-center">KEY BENEFITS</h3>
+                <div className="space-y-3 grid md:grid-cols-1 gap-3">
+                  <div className="flex gap-3 p-3 border border-accent/30 rounded bg-accent/5">
+                    <span className="text-accent flex-shrink-0 text-base">⚡</span>
+                    <div>
+                      <p className="text-xs md:text-sm font-semibold text-foreground">Fully Automated 24/7 Monitoring</p>
+                      <p className="text-xs text-muted-foreground">Never miss an arbitrage opportunity again</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 p-3 border border-accent/30 rounded bg-accent/5">
+                    <span className="text-accent flex-shrink-0 text-base">💰</span>
+                    <div>
+                      <p className="text-xs md:text-sm font-semibold text-foreground">Capital Efficient</p>
+                      <p className="text-xs text-muted-foreground">Single USDC deposit. Your capital maximizes every opportunity</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 p-3 border border-accent/30 rounded bg-accent/5">
+                    <span className="text-accent flex-shrink-0 text-base">📈</span>
+                    <div>
+                      <p className="text-xs md:text-sm font-semibold text-foreground">Passive Yield from Arbitrage Spreads</p>
+                      <p className="text-xs text-muted-foreground">Earn consistent returns from market inefficiencies</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 p-3 border border-accent/30 rounded bg-accent/5">
+                    <span className="text-accent flex-shrink-0 text-base">🔗</span>
+                    <div>
+                      <p className="text-xs md:text-sm font-semibold text-foreground">Transparent Onchain Execution</p>
+                      <p className="text-xs text-muted-foreground">All transactions visible and verifiable on-chain</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 p-3 border border-accent/30 rounded bg-accent/5">
+                    <span className="text-accent flex-shrink-0 text-base">🎯</span>
+                    <div>
+                      <p className="text-xs md:text-sm font-semibold text-foreground">Beta APR Target: 10-25%</p>
+                      <p className="text-xs text-muted-foreground">Variable based on market conditions and opportunities</p>
+                    </div>
+                  </div>
                 </div>
               </section>
 
-              <section>
-                <h3 className="text-sm md:text-base font-bold mb-3 tracking-tight text-accent">Why Use the Vault?</h3>
-                <ul className="space-y-2">
-                  <li className="flex gap-2 text-xs md:text-sm text-muted-foreground">
-                    <span className="text-accent flex-shrink-0">•</span>
-                    <span>24/7 automated monitoring - never miss an opportunity</span>
-                  </li>
-                  <li className="flex gap-2 text-xs md:text-sm text-muted-foreground">
-                    <span className="text-accent flex-shrink-0">•</span>
-                    <span>Instant execution when conditions are met</span>
-                  </li>
-                  <li className="flex gap-2 text-xs md:text-sm text-muted-foreground">
-                    <span className="text-accent flex-shrink-0">•</span>
-                    <span>No technical knowledge required</span>
-                  </li>
-                  <li className="flex gap-2 text-xs md:text-sm text-muted-foreground">
-                    <span className="text-accent flex-shrink-0">•</span>
-                    <span>Professional position management</span>
-                  </li>
-                </ul>
-              </section>
-
-              <div className="bg-accent/10 border border-accent/30 p-4 rounded">
-                <p className="text-xs md:text-sm text-foreground font-semibold mb-3">Ready to start?</p>
-                <button className="w-full px-4 py-2.5 bg-accent text-background font-bold text-sm tracking-wide hover:bg-opacity-90 neon-glow transition-all duration-200 border border-accent">
-                  CONNECT WALLET
-                </button>
+              {/* Wallet Connection */}
+              <div className="bg-accent/10 border border-accent/30 p-4 md:p-6 rounded">
+                {!walletConnected ? (
+                  <div>
+                    <p className="text-xs md:text-sm text-foreground font-semibold mb-4">CONNECT WALLET</p>
+                    <div className="space-y-2">
+                      <button 
+                        onClick={() => {
+                          setWalletConnected(true)
+                          setSuccessMessage('MetaMask Connected')
+                          setSuccessType('deposit')
+                          setTimeout(() => setSuccessMessage(''), 3000)
+                        }}
+                        className="w-full px-3 py-2.5 bg-accent text-background font-bold text-xs md:text-sm tracking-wide hover:bg-opacity-90 neon-glow transition-all duration-200 border border-accent"
+                      >
+                        MetaMask
+                      </button>
+                      <button 
+                        onClick={() => {
+                          setWalletConnected(true)
+                          setSuccessMessage('WalletConnect Connected')
+                          setSuccessType('deposit')
+                          setTimeout(() => setSuccessMessage(''), 3000)
+                        }}
+                        className="w-full px-3 py-2.5 bg-accent text-background font-bold text-xs md:text-sm tracking-wide hover:bg-opacity-90 neon-glow transition-all duration-200 border border-accent"
+                      >
+                        WalletConnect
+                      </button>
+                      <button 
+                        onClick={() => {
+                          setWalletConnected(true)
+                          setSuccessMessage('Phantom Connected')
+                          setSuccessType('deposit')
+                          setTimeout(() => setSuccessMessage(''), 3000)
+                        }}
+                        className="w-full px-3 py-2.5 bg-accent text-background font-bold text-xs md:text-sm tracking-wide hover:bg-opacity-90 neon-glow transition-all duration-200 border border-accent"
+                      >
+                        Phantom
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <div className="bg-background border border-accent/50 p-3 rounded mb-4">
+                      <p className="text-xs text-muted-foreground mb-1">CONNECTED WALLET</p>
+                      <p className="text-xs md:text-sm font-bold text-accent font-mono">0x742d...8F3c</p>
+                      <p className="text-xs text-muted-foreground mt-2">Balance: $125,450 USDC</p>
+                    </div>
+                    <button 
+                      onClick={() => setWalletConnected(false)}
+                      className="w-full px-3 py-2 border border-red-400/50 text-red-400/80 font-bold text-xs md:text-sm tracking-wide hover:bg-red-950/20 transition-all duration-200"
+                    >
+                      Disconnect
+                    </button>
+                  </div>
+                )}
               </div>
+
+              {/* Footer */}
+              <p className="text-xs text-muted-foreground text-center italic">
+                Beta version — Smart contract audit pending.
+              </p>
             </div>
           </div>
         </div>
@@ -515,76 +599,259 @@ export default function Home() {
       {/* Vault App Modal */}
       {showAppModal && (
         <div className="fixed inset-0 modal-overlay flex items-center justify-center z-50 p-4">
-          <div className="bg-background border border-border rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-background border border-border rounded-lg max-w-4xl w-full max-h-[95vh] overflow-y-auto">
             <div className="flex items-center justify-between p-4 md:p-6 border-b border-border sticky top-0 bg-background/95">
-              <h2 className="text-lg md:text-xl font-bold tracking-tight">Vault Dashboard</h2>
+              <div>
+                <h2 className="text-lg md:text-xl font-bold tracking-tight">WRAITH VAULT DASHBOARD</h2>
+                <p className="text-xs text-muted-foreground mt-1">Connected: <span className="text-accent font-mono">0x742d...8F3c</span></p>
+              </div>
               <button 
-                onClick={() => setShowAppModal(false)}
+                onClick={() => {
+                  setShowAppModal(false)
+                  setShowDepositForm(false)
+                  setShowWithdrawForm(false)
+                  setDepositAmount('')
+                  setWithdrawAmount('')
+                  setSuccessMessage('')
+                }}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <X size={24} />
               </button>
             </div>
-            <div className="p-4 md:p-6">
-              {/* Dashboard Header */}
-              <div className="grid md:grid-cols-3 gap-4 mb-8">
-                <div className="border border-border p-4 rounded">
-                  <p className="text-xs font-bold tracking-wider text-muted-foreground uppercase mb-2">TVL</p>
-                  <p className="text-2xl md:text-3xl font-bold tracking-tight">$2.45M</p>
-                  <p className="text-xs text-muted-foreground mt-1">↑ 12% this month</p>
+
+            <div className="p-4 md:p-6 space-y-6">
+              {/* Stats Row */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="border border-accent/30 bg-accent/5 p-4 rounded">
+                  <p className="text-xs font-bold tracking-wider text-muted-foreground uppercase mb-1">TVL</p>
+                  <p className="text-xl md:text-2xl font-bold tracking-tight text-accent">$248,750</p>
                 </div>
-                <div className="border border-border p-4 rounded">
-                  <p className="text-xs font-bold tracking-wider text-muted-foreground uppercase mb-2">Your Balance</p>
-                  <p className="text-2xl md:text-3xl font-bold tracking-tight">$50,000</p>
-                  <p className="text-xs text-accent mt-1">23,810 shares</p>
+                <div className="border border-accent/30 bg-accent/5 p-4 rounded">
+                  <p className="text-xs font-bold tracking-wider text-muted-foreground uppercase mb-1">Current APR</p>
+                  <p className="text-xl md:text-2xl font-bold tracking-tight text-accent">14.8%</p>
                 </div>
-                <div className="border border-border p-4 rounded">
-                  <p className="text-xs font-bold tracking-wider text-muted-foreground uppercase mb-2">Expected APR</p>
-                  <p className="text-2xl md:text-3xl font-bold tracking-tight text-accent">≈ 12%</p>
-                  <p className="text-xs text-muted-foreground mt-1">Community rewards TBA</p>
+                <div className="border border-accent/30 bg-accent/5 p-4 rounded">
+                  <p className="text-xs font-bold tracking-wider text-muted-foreground uppercase mb-1">Your Share</p>
+                  <p className="text-xl md:text-2xl font-bold tracking-tight text-accent">2.34%</p>
+                </div>
+                <div className="border border-accent/30 bg-accent/5 p-4 rounded">
+                  <p className="text-xs font-bold tracking-wider text-muted-foreground uppercase mb-1">Unrealized PnL</p>
+                  <p className="text-xl md:text-2xl font-bold tracking-tight text-accent">+$184</p>
                 </div>
               </div>
 
-              {/* Recent Activity */}
-              <div className="border border-border p-4 md:p-6 rounded mb-6">
-                <h3 className="text-sm md:text-base font-bold mb-4 tracking-tight">Recent Activity</h3>
+              {/* Success Message */}
+              {successMessage && (
+                <div className="bg-accent/20 border border-accent/50 text-accent px-4 py-3 rounded text-xs md:text-sm font-semibold text-center animate-pulse">
+                  ✓ {successMessage}
+                </div>
+              )}
+
+              {/* Main Action Buttons */}
+              {!showDepositForm && !showWithdrawForm && (
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center pb-3 border-b border-border">
+                  <button 
+                    onClick={() => setShowDepositForm(true)}
+                    className="w-full px-4 py-4 bg-accent text-background font-bold text-sm md:text-base tracking-wide hover:bg-opacity-90 neon-glow transition-all duration-200 border border-accent rounded"
+                  >
+                    DEPOSIT MORE USDC
+                  </button>
+                  <button 
+                    onClick={() => setShowWithdrawForm(true)}
+                    className="w-full px-4 py-4 border border-accent text-accent font-bold text-sm md:text-base tracking-wide hover:bg-accent hover:text-background neon-glow transition-all duration-200 rounded"
+                  >
+                    WITHDRAW
+                  </button>
+                </div>
+              )}
+
+              {/* Deposit Form */}
+              {showDepositForm && (
+                <div className="border border-accent/30 bg-accent/5 p-4 md:p-6 rounded">
+                  <h3 className="text-sm md:text-base font-bold mb-4 text-accent">DEPOSIT USDC</h3>
+                  <div className="space-y-3">
                     <div>
-                      <p className="text-xs md:text-sm font-semibold text-foreground">Arbitrage Executed</p>
-                      <p className="text-xs text-muted-foreground">YES/NO pair on Sports Market</p>
+                      <label className="text-xs md:text-sm text-muted-foreground block mb-2">Amount</label>
+                      <div className="flex gap-2">
+                        <input 
+                          type="number" 
+                          placeholder="0.00" 
+                          value={depositAmount}
+                          onChange={(e) => setDepositAmount(e.target.value)}
+                          className="flex-1 px-3 py-2.5 bg-background border border-border text-foreground text-xs md:text-sm rounded focus:outline-none focus:border-accent"
+                        />
+                        <button 
+                          onClick={() => setDepositAmount('5000')}
+                          className="px-3 py-2.5 border border-accent/50 text-accent text-xs font-semibold hover:bg-accent/10 rounded transition-colors"
+                        >
+                          Max
+                        </button>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 pt-2">
+                      <button 
+                        onClick={() => {
+                          if (depositAmount) {
+                            setSuccessMessage(`$${depositAmount} USDC Deposited Successfully`)
+                            setSuccessType('deposit')
+                            setDepositAmount('')
+                            setShowDepositForm(false)
+                            setTimeout(() => setSuccessMessage(''), 3000)
+                          }
+                        }}
+                        className="flex-1 px-4 py-3 bg-accent text-background font-bold text-xs md:text-sm tracking-wide hover:bg-opacity-90 neon-glow transition-all duration-200 border border-accent rounded"
+                      >
+                        DEPOSIT
+                      </button>
+                      <button 
+                        onClick={() => {
+                          setShowDepositForm(false)
+                          setDepositAmount('')
+                        }}
+                        className="flex-1 px-4 py-3 border border-border text-muted-foreground font-bold text-xs md:text-sm hover:bg-background/50 rounded transition-colors"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Withdraw Form */}
+              {showWithdrawForm && (
+                <div className="border border-accent/30 bg-accent/5 p-4 md:p-6 rounded">
+                  <h3 className="text-sm md:text-base font-bold mb-4 text-accent">WITHDRAW USDC</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <label className="text-xs md:text-sm text-muted-foreground block mb-2">Amount or %</label>
+                      <div className="flex gap-2">
+                        <input 
+                          type="number" 
+                          placeholder="0.00" 
+                          value={withdrawAmount}
+                          onChange={(e) => setWithdrawAmount(e.target.value)}
+                          className="flex-1 px-3 py-2.5 bg-background border border-border text-foreground text-xs md:text-sm rounded focus:outline-none focus:border-accent"
+                        />
+                        <button 
+                          onClick={() => setWithdrawAmount('100%')}
+                          className="px-3 py-2.5 border border-accent/50 text-accent text-xs font-semibold hover:bg-accent/10 rounded transition-colors"
+                        >
+                          Max
+                        </button>
+                      </div>
+                    </div>
+                    <p className="text-xs text-muted-foreground">Available balance: $50,000</p>
+                    <div className="flex gap-2 pt-2">
+                      <button 
+                        onClick={() => {
+                          if (withdrawAmount) {
+                            setSuccessMessage(`${withdrawAmount} USDC Withdrawn to Wallet`)
+                            setSuccessType('withdraw')
+                            setWithdrawAmount('')
+                            setShowWithdrawForm(false)
+                            setTimeout(() => setSuccessMessage(''), 3000)
+                          }
+                        }}
+                        className="flex-1 px-4 py-3 bg-accent text-background font-bold text-xs md:text-sm tracking-wide hover:bg-opacity-90 neon-glow transition-all duration-200 border border-accent rounded"
+                      >
+                        WITHDRAW
+                      </button>
+                      <button 
+                        onClick={() => {
+                          setShowWithdrawForm(false)
+                          setWithdrawAmount('')
+                        }}
+                        className="flex-1 px-4 py-3 border border-border text-muted-foreground font-bold text-xs md:text-sm hover:bg-background/50 rounded transition-colors"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Active Positions */}
+              <div className="border border-border p-4 md:p-6 rounded">
+                <h3 className="text-sm md:text-base font-bold mb-4 tracking-tight">Active Positions</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-xs md:text-sm">
+                    <thead className="border-b border-border">
+                      <tr>
+                        <th className="text-left py-2 text-muted-foreground font-semibold">Market</th>
+                        <th className="text-left py-2 text-muted-foreground font-semibold">Pair</th>
+                        <th className="text-right py-2 text-muted-foreground font-semibold">Invested</th>
+                        <th className="text-right py-2 text-muted-foreground font-semibold">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-border/50">
+                        <td className="py-3">Polymarket</td>
+                        <td className="py-3">Trump YES / NO</td>
+                        <td className="text-right">$12,450</td>
+                        <td className="text-right text-accent">● Active</td>
+                      </tr>
+                      <tr className="border-b border-border/50">
+                        <td className="py-3">Kalshi</td>
+                        <td className="py-3">BTC Above $60K</td>
+                        <td className="text-right">$8,200</td>
+                        <td className="text-right text-accent">● Active</td>
+                      </tr>
+                      <tr>
+                        <td className="py-3">Polymarket</td>
+                        <td className="py-3">Election Outcome</td>
+                        <td className="text-right">$5,750</td>
+                        <td className="text-right text-muted-foreground">Pending</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Recent Captured Arbitrage */}
+              <div className="border border-border p-4 md:p-6 rounded">
+                <h3 className="text-sm md:text-base font-bold mb-4 tracking-tight">Recent Captured Arbitrage</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-start p-3 bg-accent/5 rounded">
+                    <div>
+                      <p className="text-xs md:text-sm font-semibold text-foreground">Polymarket → Kalshi Spread</p>
+                      <p className="text-xs text-muted-foreground">Trump Victory Arbitrage</p>
                     </div>
                     <p className="text-xs md:text-sm font-bold text-accent">+$1,245</p>
                   </div>
-                  <div className="flex justify-between items-center pb-3 border-b border-border">
+                  <div className="flex justify-between items-start p-3 bg-accent/5 rounded">
                     <div>
-                      <p className="text-xs md:text-sm font-semibold text-foreground">Settlement Received</p>
-                      <p className="text-xs text-muted-foreground">Previous arbitrage settled</p>
+                      <p className="text-xs md:text-sm font-semibold text-foreground">Kalshi Cross-Market</p>
+                      <p className="text-xs text-muted-foreground">Bitcoin Price Movement</p>
                     </div>
                     <p className="text-xs md:text-sm font-bold text-accent">+$892</p>
                   </div>
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-start p-3 bg-accent/5 rounded">
                     <div>
-                      <p className="text-xs md:text-sm font-semibold text-foreground">Deposit</p>
-                      <p className="text-xs text-muted-foreground">USDC deposited to vault</p>
+                      <p className="text-xs md:text-sm font-semibold text-foreground">Polymarket Multi-Pair</p>
+                      <p className="text-xs text-muted-foreground">Election Market Mispricing</p>
                     </div>
-                    <p className="text-xs md:text-sm font-bold text-foreground">$50,000</p>
+                    <p className="text-xs md:text-sm font-bold text-accent">+$567</p>
                   </div>
                 </div>
               </div>
 
-              {/* Actions */}
-              <div className="space-y-3">
-                <button className="w-full px-4 py-3 bg-accent text-background font-bold text-sm tracking-wide hover:bg-opacity-90 neon-glow transition-all duration-200 border border-accent rounded">
-                  DEPOSIT MORE USDC
-                </button>
-                <button className="w-full px-4 py-3 border border-accent text-accent font-bold text-sm tracking-wide hover:bg-accent hover:text-background neon-glow transition-all duration-200 rounded">
-                  WITHDRAW
-                </button>
+              {/* Risk Meter */}
+              <div className="border border-border p-4 md:p-6 rounded">
+                <h3 className="text-sm md:text-base font-bold mb-4 tracking-tight">Risk Assessment</h3>
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <div className="w-full bg-background rounded-full h-2 overflow-hidden">
+                      <div className="bg-gradient-to-r from-green-500 to-accent h-full" style={{ width: '25%' }}></div>
+                    </div>
+                  </div>
+                  <p className="text-xs md:text-sm font-bold text-green-400 ml-4">LOW RISK</p>
+                </div>
+                <p className="text-xs text-muted-foreground mt-3">Well-diversified positions across multiple markets. Continuous monitoring active.</p>
               </div>
 
-              <p className="text-xs text-muted-foreground text-center mt-6">
-                This is a mock interface for demonstration purposes.
+              <p className="text-xs text-muted-foreground text-center italic border-t border-border pt-4">
+                Mock interface for demonstration. All data is simulated.
               </p>
             </div>
           </div>
