@@ -4,8 +4,8 @@
 
 $WRAITH on base
 
-Contract address: comingsoon
-live: comingsoon
+Contract address: 0x8925de0c65ac607f307f45930d3cbab692997ba3
+live: https://bankr.bot/terminal/trade?out=0x8925de0c65ac607f307f45930d3cbab692997ba3&chain=base
 
 **Autonomous Prediction Market Arbitrage Vault**
 
