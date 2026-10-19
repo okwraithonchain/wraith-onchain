@@ -2,7 +2,7 @@
 
 # Wraith Onchain 
 
-$WRAITH on base
+$WO on base
 
 Contract address: 0xb78266DbEc631CbfEb464B739C0EF8F50473Aba3
 
