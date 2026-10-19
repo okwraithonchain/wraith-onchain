@@ -5,6 +5,7 @@
 $WRAITH on base
 
 Contract address: 0xb78266DbEc631CbfEb464B739C0EF8F50473Aba3
+
 live: https://bankr.bot/terminal/trade?out=0xb78266DbEc631CbfEb464B739C0EF8F50473Aba3&chain=base
 
 **Autonomous Prediction Market Arbitrage Vault**
