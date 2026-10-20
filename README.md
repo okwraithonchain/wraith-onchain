@@ -2,7 +2,7 @@
 
 # Wraith Onchain 
 
-$WO on base
+$WRAITH on base
 
 Contract address: coming soon
 
