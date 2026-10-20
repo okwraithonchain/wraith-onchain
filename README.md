@@ -4,9 +4,9 @@
 
 $WRAITH on base
 
-Contract address: coming soon
+Contract address: 0xec1796c4cd2aac2de4475a4728741e6cb203fee1
 
-live: coming soon
+live: [https://feel.cash/base/wraith](https://feel.cash/base/wraith)
 
 **Autonomous Prediction Market Arbitrage Vault**
 
